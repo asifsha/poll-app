@@ -1,2 +1,2 @@
 # rn-cloud
-Integrate raact native with firebase
+Integrate react native with firebase
