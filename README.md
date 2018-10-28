@@ -1,2 +1,2 @@
 # poll app
-Integrate react native with firebase
+Poll app for admin and users mode using react native with firebase
