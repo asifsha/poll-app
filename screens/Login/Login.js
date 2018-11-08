@@ -10,19 +10,21 @@ import {
 } from 'react-native';
 import { WebBrowser } from 'expo';
 import LoginForm from './LoginForm';
+import Header from '../Header';
 
 export default class Login extends React.Component {
     static navigationOptions = ({ navigation }) => ({
-        title: "Login [admin]",
-        headerLeft: (
-            <TouchableOpacity
-                style={Styles.headerButton}
-                onPress={() => navigation.openDrawer()}>
-                <Icon name="bars" size={20} />
-            </TouchableOpacity>
-        ),
+        headerTitle: <Header />,
+        headerStyle: {
+            backgroundColor: '#ff0066',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+            fontWeight: 'bold',
+        },
 
-})
+
+    })
 
     render() {
         return (
@@ -54,5 +56,8 @@ const styles = StyleSheet.create({
         position: 'absolute',
         width: 300,
         height: 100
+    },
+    headerButton: {
+        backgroundColor: '#2c3e50',
     }
 });

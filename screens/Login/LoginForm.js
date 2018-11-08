@@ -27,7 +27,7 @@ export default class LoginForm extends React.Component {
                     secureTextEntry />
 
                 <TouchableOpacity style={styles.buttonContainer}
-                    onPress={onButtonPress}>
+                    onPress={this.onButtonPress}>
                     <Text style={styles.buttonText}>LOGIN</Text>
                 </TouchableOpacity>
             </View>)
