@@ -8,18 +8,35 @@ import Login from '../screens/Login';
 import Logout from '../screens/Logout';
 import MainTabNavigator from './MainTabNavigator';
 
+import AuthLoadingScreen from '../screens/AuthLoadingScreen/AuthLoadingScreen';
+import SignInScreen from '../screens/Login/Login';
+
 import { Button } from 'react-native-paper';
 
 import { DrawerNavigator, DrawerItems } from 'react-navigation';
 
 //import Icon from 'react-native-vector-icons/FontAwesome5';
+
+const AuthStack = createStackNavigator({ SignIn: SignInScreen });
+
 // export default createSwitchNavigator({
 //   // You could add another route here for authentication.
 //   // Read more at https://reactnavigation.org/docs/en/auth-flow.html
 //   Main: MainTabNavigator,
 // });
 
+export default createSwitchNavigator(
+  {
+    AuthLoading: AuthLoadingScreen,
+    App: MainTabNavigator,
+    Auth: AuthStack,
+  },
+  {
+    initialRouteName: 'AuthLoading',
+  }
+);
 
+//xport default 
 // const RootStack = createDrawerNavigator({
 //   Home: Logout,
 //   Login: {
@@ -94,24 +111,24 @@ import { DrawerNavigator, DrawerItems } from 'react-navigation';
 //   }
 // );
 
-const App = createDrawerNavigator({
-  Home: Login ,  
-  Notifications: MainTabNavigator,
-},
-{
-  initialRouteName: 'Home',
-  /* The header config from HomeScreen is now here */ 
-}
+// const App = createDrawerNavigator({
+//   Login: Login ,  
+//   Notifications: MainTabNavigator,
+// },
+// {
+//   initialRouteName: 'Login',
+//   /* The header config from HomeScreen is now here */ 
+// }
 
-,{
-   contentComponent: (props) => (
-      <View>
-        <Text>Custom Header</Text>
-        <DrawerItems {...props} />
-        <Text>Custom Footer</Text>
-      </View>
-    )
-  });
+// ,{
+//    contentComponent: (props) => (
+//       <View>
+//         <Text>Custom Header</Text>
+//         <DrawerItems {...props} />
+//         <Text>Custom Footer</Text>
+//       </View>
+//     )
+//   });
 
   //working
   // const RootStack = createStackNavigator(
@@ -131,4 +148,4 @@ const App = createDrawerNavigator({
   //   }
   // );
 
-export default App;
+//export default App;

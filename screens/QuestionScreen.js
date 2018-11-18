@@ -22,42 +22,65 @@ import { WebBrowser } from 'expo';
 
 import { MonoText } from '../components/StyledText';
 
-export default class HomeScreen extends React.Component {
+export default class QuestionScreen extends React.Component {
 
   constructor() {
     super();
-    
+    this.state = { 
+      question: '',
+      option1: '',
+      option2: '',
+      option3: '',
+      option4: ''
+     };
   }
   static navigationOptions = {
-    header: null,
+    title: 'Question',
   };
 
   render() {
-    const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-        <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-          <Headline>Questions</Headline>  
-          <Button icon="add" mode="contained" 
-          onPress={() =>  navigate('Question', 
-                    {
-                        questionId: -1
-                    })}>
-            Add Question
-          </Button>  
-          <FlatList
-            data={[
-              { key: 'Devin' },
-              { key: 'Jackson' },
-              { key: 'James' },
-              { key: 'Joel' },
-              { key: 'John' },
-              { key: 'Jillian' },
-              { key: 'Jimmy' },
-              { key: 'Julie' },
-            ]}
-            renderItem={({ item }) => <Text style={styles.item}>{item.key}</Text>}
-          />       
+        <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>         
+          
+          <TextInput
+            label='Question'
+            value={this.state.question}
+            onChangeText={text => this.setState({ question:text })}
+          />
+          <HelperText
+            type="info"
+          >
+            Upto 4 options can be added
+        </HelperText>
+
+          <TextInput
+            label='Option 1'
+            value={this.state.option1}
+            onChangeText={text => this.setState({ option1:text })}
+          />
+
+           <TextInput
+            label='Option 2'
+            value={this.state.option2}
+            onChangeText={text => this.setState({ option2:text })}
+          />
+
+           <TextInput
+            label='Option 3'
+            value={this.state.option3}
+            onChangeText={text => this.setState({ option3:text })}
+          />
+
+          <TextInput
+            label='Option 4'
+            value={this.state.option4}
+            onChangeText={text => this.setState({ option4:text })}
+          />
+          
+          <Button icon="save" mode="contained" onPress={() => console.log('Pressed')}>
+            Save
+          </Button>                
         </ScrollView>
       </View>
     );

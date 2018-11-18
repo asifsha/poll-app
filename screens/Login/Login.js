@@ -7,35 +7,65 @@ import {
     Text,
     TouchableOpacity,
     View,
+    AsyncStorage
+    
 } from 'react-native';
 import { WebBrowser } from 'expo';
 import LoginForm from './LoginForm';
 import Header from '../Header';
+import { TextInput, Button } from 'react-native-paper';
 
 export default class Login extends React.Component {
-    static navigationOptions = ({ navigation }) => ({
-        headerTitle: <Header />,
+    // static navigationOptions = ({ navigation }) => ({
+    //     headerTitle: <Header />,
+    //     headerStyle: {
+    //         backgroundColor: '#ff0066',
+    //     },
+    //     headerTintColor: '#fff',
+    //     headerTitleStyle: {
+    //         fontWeight: 'bold',
+    //     },
+
+
+    // })
+
+    static navigationOptions = {
+        title: 'Please sign in',
         headerStyle: {
-            backgroundColor: '#ff0066',
-        },
-        headerTintColor: '#fff',
-        headerTitleStyle: {
-            fontWeight: 'bold',
-        },
+                     backgroundColor: '#ff6600',
+                 },
+      };
 
-
-    })
-
+      _signInAsync = async () => {
+        await AsyncStorage.setItem('userToken', 'abc');
+        this.props.navigation.navigate('App');
+      };
     render() {
         return (
             <View style={styles.container}>
-                <View style={styles.loginContainer}>
-                    <Text>no bg</Text>
-                </View>
+                <View >
+                <TextInput 
+                mode="outlined"
+                    autoCapitalize="none"
+                    onSubmitEditing={() => this.passwordInput.focus()}
+                    autoCorrect={false}
+                    keyboardType='email-address'
+                    returnKeyType="next"
+                    placeholder='Email or Mobile Num'
+                     />
 
-                <View style={styles.formContainer}>
-                    <LoginForm />
-                </View>
+                <TextInput 
+                mode="outlined"
+                    returnKeyType="go"
+                    ref={(input) => this.passwordInput = input}
+                    placeholder='Password'                    
+                    secureTextEntry />
+                <Button mode="outlined"
+                style={styles.buttonContainer}
+                onPress={this._signInAsync} >
+                    LOGIN
+                </Button>
+                </View>                
             </View>
         )
     }
@@ -45,19 +75,14 @@ export default class Login extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#2c3e50',
+        backgroundColor: '#cceeff',
+        padding: 20
     },
-    loginContainer: {
-        alignItems: 'center',
-        flexGrow: 1,
-        justifyContent: 'center'
-    },
-    logo: {
-        position: 'absolute',
-        width: 300,
-        height: 100
-    },
-    headerButton: {
-        backgroundColor: '#2c3e50',
+    
+    buttonContainer: {
+        backgroundColor: '#2980b6',
+        paddingVertical: 15,
+                
     }
+    
 });
