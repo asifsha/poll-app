@@ -22,22 +22,21 @@ import { WebBrowser } from 'expo';
 
 import { MonoText } from '../components/StyledText';
 
-export default class HomeScreen extends React.Component {
+export default class PollScreen extends React.Component {
 
   constructor() {
     super();
     
   }
   static navigationOptions = {
-    header: null,
+    title: 'Polls',
   };
 
   render() {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-        <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-          <Headline>Questions</Headline>  
+        <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>          
           <Button icon="add" mode="contained" 
           onPress={() =>  navigate('Question', 
                     {
