@@ -8,6 +8,9 @@ import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import QuestionScreen from '../screens/QuestionScreen';
 
+import MyPollScreen from '../screens/MyPollScreen';
+import AnswerScreen from '../screens/AnswerScreen';
+
 
 const PollStack = createStackNavigator({
   Home: PollScreen,
@@ -56,9 +59,50 @@ SettingsStack.navigationOptions = {
   ),
 };
 
-export default createBottomTabNavigator({
-  PollStack,
-  LinksStack,
-  SettingsStack,
+// export default createBottomTabNavigator({
+//   PollStack,
+//   LinksStack,
+//   SettingsStack,
+// });
+
+
+const UserPollStack = createStackNavigator({
+  Home: MyPollScreen 
 });
+
+
+UserPollStack.navigationOptions = {
+  tabBarLabel: 'My Polls',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios'
+          ? `ios-information-circle${focused ? '' : '-outline'}`
+          : 'md-information-circle'
+      }
+    />
+  ),
+};
+
+const AnswerStack = createStackNavigator({
+  Answer:AnswerScreen
+});
+
+AnswerStack.navigationOptions = {
+  tabBarLabel: 'Answers',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={Platform.OS === 'ios' ? `ios-link${focused ? '' : '-outline'}` : 'md-link'}
+    />
+  ),
+};
+
+export default createBottomTabNavigator({
+  UserPollStack,
+  AnswerStack  
+});
+
+
 
